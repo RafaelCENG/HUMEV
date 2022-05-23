@@ -153,29 +153,4 @@ CALL IN_PROGRESS_Evaluations(4,'msmith');
 
 
 #################################################################################################
-/*
-CREATE PROCEDURE official3.2(IN Id_Of_Job INT,IN evaluator VARCHAR(12))
-BEGIN
-	DECLARE finishedFlag INT;
-	DECLARE eval_username VARCHAR(12);
-    DECLARE id INT; 
-    DECLARE g1 INT;
-    DECLARE g2 INT;
-    DECLARE g3 INT;
-    DECLARE Progress_cursor CURSOR FOR 
-    SELECT evalusr,jobid,g1,g2,g3 FROM tempresult	WHERE jobid=Id_Of_Job;
-	DECLARE CONTINUE HANDLER FOR NOT FOUND SET finishedFlag=1;
-    SET finishedFlag = 0;
-	OPEN Progress_cursor;
-    FETCH Progress_cursor INTO eval_username,id,g1,g2,g3
-    WHILE(finishedFlag=0) DO
-    FETCH Progress_cursor INTO eval_username,id,Grade;
-		IF(g1 IS NOT NULL AND g2 IS NOT NULL AND g3 IS NOT NULL ) THEN
-			UPDATE evaluationresult
-				SET FinalGrade  = g1 + g2 + g3
-		    WHERE (job_id = Id_Of_Job AND evaluator_username = evaluator);
-		END IF;	
-    END WHILE;
-END $$
-*/
 

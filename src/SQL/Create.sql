@@ -2,36 +2,6 @@ DROP DATABASE IF EXISTS StaffEvaluation;
 CREATE  DATABASE StaffEvaluation;
 USE StaffEvaluation;
 
-/*
-CREATE ROLE 'StaffEvaluation_Administrator', 'StaffEvaluation_Employee', 'StaffEvaluation_Manager';
-
-GRANT ALL ON StaffEvaluation.* TO 'StaffEvaluation_Administrator';
-GRANT SELECT ON app_db.* TO 'app_read';
-GRANT INSERT, UPDATE, DELETE ON app_db.* TO 'StaffEvaluation_Employee';
-GRANT INSERT, UPDATE, DELETE ON app_db.* TO 'StaffEvaluation_Manager';
-*/
-/*
-DROP TABLE IF EXISTS manager;
-DROP TABLE IF EXISTS company;
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS evaluator;
-DROP TABLE IF EXISTS antikeim;
-DROP TABLE IF EXISTS degree;
-DROP TABLE IF EXISTS has_degree;
-DROP TABLE IF EXISTS employee;
-DROP TABLE IF EXISTS job;
-DROP TABLE IF EXISTS evaluationresult;
-DROP TABLE IF EXISTS TempResult;
-DROP TABLE IF EXISTS needs;
-DROP TABLE IF EXISTS requestevaluation;
-DROP TABLE IF EXISTS project;
-DROP TABLE IF EXISTS languages;
-DROP TABLE IF EXISTS administrator;
-DROP TABLE IF EXISTS manager_rep;
-DROP TABLE IF EXISTS User_reg_date;
-DROP TABLE IF EXISTS log;
-*/
-
 
 CREATE TABLE IF NOT EXISTS company
 (

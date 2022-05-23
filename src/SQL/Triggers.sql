@@ -150,17 +150,7 @@ BEGIN
 END$$
 
 
--- CREATE TRIGGER insert_job_a
--- AFTER INSERT ON job
--- FOR EACH ROW
--- BEGIN
--- 	DECLARE current_username VARCHAR(20);
--- 		-- SELECT users.user_username INTO current_username WHERE  users.user_username = LoginSession.user_username;
--- 		SELECT USER() INTO current_username;
---    UPDATE data_log
--- 	SET yes_no = 'Yes'
--- 	WHERE action = 'INSERT' AND table_name = 'job' AND username = current_username;
--- END $$
+
 
 ##Kanonika einai BEFORE INSERT KAI EPEITA KANOUME AFTER GIA NA DOUME AN EINAI SUCCESSFULL. OMOS LOGO PROBLIMATOS ME TO USERNAME DEN MPOROUME NA KANOUME TON ELEGXO
 CREATE TRIGGER insert_job
