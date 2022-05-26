@@ -1,5 +1,8 @@
 package Forms;
 
+import Coding.Operations;
+import javax.swing.JOptionPane;
+
 public class LoginForm extends javax.swing.JFrame {
 
     /**
@@ -94,6 +97,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         usertypeCombo.setBackground(new java.awt.Color(0, 0, 0));
         usertypeCombo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        usertypeCombo.setForeground(new java.awt.Color(255, 255, 255));
         usertypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Manager", "Employee", "Evaluator" }));
 
         passwordTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +160,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         loginBtn.setBackground(new java.awt.Color(0, 0, 0));
         loginBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        loginBtn.setForeground(new java.awt.Color(255, 255, 255));
         loginBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HUMEV/images/login_btn.png"))); // NOI18N
         loginBtn.setText("LOGIN");
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +172,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         registerBtn.setBackground(new java.awt.Color(0, 0, 0));
         registerBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        registerBtn.setForeground(new java.awt.Color(255, 255, 255));
         registerBtn.setText("REGISTER");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +183,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         closeBtn.setBackground(new java.awt.Color(0, 0, 0));
         closeBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        closeBtn.setForeground(new java.awt.Color(255, 255, 255));
         closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HUMEV/images/close_btn.png"))); // NOI18N
         closeBtn.setText("CLOSE");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -224,16 +231,48 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-      
+       Operations operations = new Operations();
+        
+        try{
+            String usernameStr = usernameTxt.getText();
+            char[] passwordStr = passwordTxt.getPassword();
+            String newPass = new String(passwordStr);
+            String usertypeStr = usertypeCombo.getSelectedItem().toString();
+            
+            if(operations.isLogin(usernameStr, newPass, usertypeStr, this)){
+                if(usertypeStr == "Manager") {
+                    new ManagerPanel().setVisible(true);
+                     this.dispose();
+                }
+                else if((usertypeStr == "Employee")) {
+                     new EmployeePanel().setVisible(true);
+                     this.dispose();    
+                }
+                 else if((usertypeStr == "Evaluator")) {
+                     new EvaluatorPanel().setVisible(true);
+                     this.dispose();    
+                }
+                 else if((usertypeStr == "Administrator")) {
+                     new AdministratorPanel().setVisible(true);
+                     this.dispose();    
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Please type correct Username/Password!");
+            }
+            
+        }catch (Exception exception){
+            JOptionPane.showMessageDialog(this, "Please type correct information");
+        }
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
         // TODO add your handling code here:
-
+        this.dispose();
     }//GEN-LAST:event_closeBtnActionPerformed
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
-
+        new RegistrationForm().setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_registerBtnActionPerformed
 
     private void passwordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxtActionPerformed

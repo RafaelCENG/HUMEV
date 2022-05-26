@@ -59,23 +59,23 @@ public class ManagerForgotPasswordEmail extends javax.swing.JFrame {
     });
     jScrollPane1.setViewportView(jTable1);
 
-    jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+    jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
     jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
-    jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+    jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jLabel1.setForeground(new java.awt.Color(255, 255, 255));
     jLabel1.setText("Username");
 
-    jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+    jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jLabel2.setForeground(new java.awt.Color(255, 255, 255));
     jLabel2.setText("Login As");
     jLabel2.setPreferredSize(new java.awt.Dimension(0, 30));
 
-    usernameLbl.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+    usernameLbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     usernameLbl.setForeground(new java.awt.Color(255, 255, 255));
 
-    loginAsLbl.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+    loginAsLbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     loginAsLbl.setForeground(new java.awt.Color(255, 255, 255));
     loginAsLbl.setPreferredSize(new java.awt.Dimension(0, 30));
 
@@ -108,6 +108,7 @@ public class ManagerForgotPasswordEmail extends javax.swing.JFrame {
             .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
+    jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vaseis/project/images/login_btn.png"))); // NOI18N
     jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,6 +117,7 @@ public class ManagerForgotPasswordEmail extends javax.swing.JFrame {
         }
     });
 
+    jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jButton3.setText("BACK");
     jButton3.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,10 +152,13 @@ public class ManagerForgotPasswordEmail extends javax.swing.JFrame {
             .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
+    jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jLabel4.setText("Password");
 
+    jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jLabel5.setText("Email");
 
+    jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jButton1.setText("CHANGE");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +166,7 @@ public class ManagerForgotPasswordEmail extends javax.swing.JFrame {
         }
     });
 
+    jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jButton2.setText("REFRESH");
     jButton2.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {

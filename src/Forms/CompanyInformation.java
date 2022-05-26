@@ -61,23 +61,25 @@ public class CompanyInformation extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(204, 153, 0));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Username");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Login As");
         jLabel2.setPreferredSize(new java.awt.Dimension(0, 30));
 
-        usernameLbl.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        usernameLbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         usernameLbl.setForeground(new java.awt.Color(255, 255, 255));
 
-        loginAsLbl.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        loginAsLbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         loginAsLbl.setForeground(new java.awt.Color(255, 255, 255));
         loginAsLbl.setPreferredSize(new java.awt.Dimension(0, 30));
 
@@ -152,20 +154,28 @@ public class CompanyInformation extends javax.swing.JFrame {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("AFM:");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("DOY:");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("NAME:");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("PHONE:");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("STREET:");
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("NUM:");
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("CITY:");
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("COUNTRY:");
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -228,6 +238,7 @@ public class CompanyInformation extends javax.swing.JFrame {
     });
     jScrollPane1.setViewportView(jTable1);
 
+    jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jButton1.setText("EDIT");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,6 +246,7 @@ public class CompanyInformation extends javax.swing.JFrame {
         }
     });
 
+    jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jButton2.setText("REFRESH");
     jButton2.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,8 +290,8 @@ public class CompanyInformation extends javax.swing.JFrame {
                                 .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 180, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(180, 180, 180)
                             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))))))
             .addContainerGap(18, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
@@ -331,7 +343,7 @@ public class CompanyInformation extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

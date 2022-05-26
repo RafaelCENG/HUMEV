@@ -52,23 +52,23 @@ public class EmployeeMakeRequest extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Username");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Login As");
         jLabel2.setPreferredSize(new java.awt.Dimension(0, 30));
 
-        usernameLbl.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        usernameLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         usernameLbl.setForeground(new java.awt.Color(255, 255, 255));
 
-        loginAsLbl.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        loginAsLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         loginAsLbl.setForeground(new java.awt.Color(255, 255, 255));
         loginAsLbl.setPreferredSize(new java.awt.Dimension(0, 30));
 
@@ -101,6 +101,7 @@ public class EmployeeMakeRequest extends javax.swing.JFrame {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel3.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vaseis/project/images/login_btn.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,6 +110,7 @@ public class EmployeeMakeRequest extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         jButton1.setText("BACK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

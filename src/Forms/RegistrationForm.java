@@ -1,7 +1,11 @@
 package Forms;
 
+import Coding.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 
 public class RegistrationForm extends javax.swing.JFrame {
@@ -81,6 +85,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         RegisterButton.setBackground(new java.awt.Color(0, 0, 0));
         RegisterButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        RegisterButton.setForeground(new java.awt.Color(255, 255, 255));
         RegisterButton.setText("REGISTER");
         RegisterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,12 +110,6 @@ public class RegistrationForm extends javax.swing.JFrame {
             }
         });
 
-        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtUserKeyReleased(evt);
-            }
-        });
-
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtEmailKeyReleased(evt);
@@ -118,11 +117,13 @@ public class RegistrationForm extends javax.swing.JFrame {
         });
 
         comboRole.setBackground(new java.awt.Color(0, 0, 0));
+        comboRole.setForeground(new java.awt.Color(255, 255, 255));
         comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Manager", "Employee", "Evaluator" }));
         comboRole.setSelectedIndex(-1);
 
         backButton.setBackground(new java.awt.Color(0, 0, 0));
         backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
         backButton.setText("BACK");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,7 +283,54 @@ public class RegistrationForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
-        
+        try {
+            int flag = 0;
+            String Fname = txtFname.getText();
+            String Lname = txtLname.getText();
+            String Username = txtUser.getText();
+            String Email = txtEmail.getText();
+            String Password = txtPassword.getText();
+            String ConfirmPassword = txtCPassword.getText();
+            
+            while (flag == 0) {
+                if(Fname.equals("") || Lname.equals("") || Username.equals("") || Email.equals("") || Password.equals("") || ConfirmPassword.equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                break;
+                }
+            
+                else if(!Password.equals(ConfirmPassword)){
+                JOptionPane.showMessageDialog(null, "The password does not match");
+                break;
+                }
+          
+                else if(comboRole.getSelectedIndex() == -1) {
+                JOptionPane.showMessageDialog(null, "Select a Role");
+                break;
+                }
+                else {
+                flag = 1;
+                }
+            }
+            
+              
+            if(flag == 1){
+            String query = "INSERT INTO `Users`(`user_name` ,`user_surname` ,`user_username` ,`user_email` ,`user_password` ,`user_role`) VALUES(?, ?, ?, ?, ?, ?)";
+            Connection myConn = MySQLConnection.getConnection();
+            preparedStatement=myConn.prepareStatement(query);
+            preparedStatement.setString(1, txtFname.getText());
+            preparedStatement.setString(2, txtLname.getText());
+            preparedStatement.setString(3, txtUser.getText());
+            preparedStatement.setString(4, txtEmail.getText());
+            preparedStatement.setString(5, txtPassword.getText());
+            preparedStatement.setString(6, comboRole.getSelectedItem().toString());
+            preparedStatement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "REGISTER SUCCESSFULLY");
+            }
+            
+            
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -291,7 +339,16 @@ public class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void txtFnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFnameKeyReleased
-
+         // TODO add your handling code here:
+        String PATTERN="^[a-zA-Z]{0,30}$";
+        Pattern patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(txtFname.getText());
+        if(!match.matches()){
+            Flabel.setText("Name is incorrect!");
+        }
+        else{
+            Flabel.setText(null);
+        }
     }//GEN-LAST:event_txtFnameKeyReleased
 
     private void txtFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFnameActionPerformed
@@ -303,15 +360,40 @@ public class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_LlabelKeyReleased
 
     private void txtLnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLnameKeyReleased
-        
+         // TODO add your handling code here:
+        String PATTERN="^[a-zA-Z]{0,30}$";
+        Pattern patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(txtLname.getText());
+        if(!match.matches()){
+            Llabel.setText("Surname is incorrect!");
+        }
+        else{
+            Llabel.setText(null);
+        }
+    }                                    
+
+    private void txtUserKeyReleased(java.awt.event.KeyEvent evt) {                                    
+        String PATTERN="^[a-zA-Z0-9_]{0,15}$";
+        Pattern patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(txtUser.getText());
+        if(!match.matches()){
+            Userlabel.setText("Username between 1-15 characters");
+        }
+        else{
+            Userlabel.setText(null);
+        }
     }//GEN-LAST:event_txtLnameKeyReleased
 
-    private void txtUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyReleased
-        
-    }//GEN-LAST:event_txtUserKeyReleased
-
     private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
-      
+        String PATTERN="^[a-zA-Z0-9_]{0,30}[@][a-zA-Z]{0,10}[.][a-zA-Z]{0,5}$";
+        Pattern patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(txtEmail.getText());
+        if(!match.matches()){
+            Emaillabel.setText("Email is incorrect");
+        }
+        else{
+            Emaillabel.setText(null);
+        }
     }//GEN-LAST:event_txtEmailKeyReleased
 
     /**
@@ -374,7 +456,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtFname;
     private javax.swing.JTextField txtLname;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUser;
+    public javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 
 }
