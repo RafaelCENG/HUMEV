@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Forms;
 
 
+import Coding.Company;
+import Coding.LoginSession;
 import Coding.Logout;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -17,6 +13,10 @@ public class CompanyInformation extends javax.swing.JFrame {
     /** Creates new form CompanyInformation */
     public CompanyInformation() {
         initComponents();
+        loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
+        //populate the jtable
+        Company.fillCompanyJTable(jTable1);
        
     }
 
@@ -387,7 +387,23 @@ public class CompanyInformation extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
+         // display the selected row data in the jtextfields
+        
+        // get the jtable model
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        
+        // get the selected row index
+        int rIndex = jTable1.getSelectedRow();
+        
+        // display data
+        jTextField1.setText(model.getValueAt(rIndex, 0).toString());
+        jTextField2.setText(model.getValueAt(rIndex, 1).toString());
+        jTextField3.setText(model.getValueAt(rIndex, 2).toString());
+        jTextField4.setText(model.getValueAt(rIndex, 3).toString());
+        jTextField5.setText(model.getValueAt(rIndex, 4).toString());
+        jTextField6.setText(model.getValueAt(rIndex, 5).toString());
+        jTextField7.setText(model.getValueAt(rIndex, 6).toString());
+        jTextField8.setText(model.getValueAt(rIndex, 7).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -395,11 +411,45 @@ public class CompanyInformation extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+  // edit the selected company
+        
+        //get data from the fields
+        String afm = jTextField1.getText();
+        String doy = jTextField2.getText();
+        String Name = jTextField3.getText();
+        int phone = 0;
+        String street = jTextField5.getText();
+        int num = 0;
+        String city = jTextField7.getText();
+        String country = jTextField8.getText();
+//        phone.trim().equals("") || num.trim().equals("") ||
+        if(afm.trim().equals("") || doy.trim().equals("") || Name.trim().equals("") ||  street.trim().equals("") ||  city.trim().equals("") || country.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                phone = Integer.valueOf(jTextField4.getText());
+                num = Integer.valueOf(jTextField6.getText());
+                System.out.print(num = Integer.valueOf(jTextField6.getText()));
+                if(Company.editCompany(afm,doy,Name,phone,street,num,city,country)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
+       //clear the jtable first
+        jTable1.setModel(new DefaultTableModel(null, new Object[]{"AFM", "DOY", "NAME", "PHONE", "STREET", "NUM", "CITY", "COUNTRY"}));
+
+        //populate the jtable
+        Company.fillCompanyJTable(jTable1);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

@@ -1,5 +1,8 @@
 package Forms;
 
+import Coding.LoginSession;
+import Coding.Logout;
+import Coding.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -15,7 +18,8 @@ public class AdministratorNew_User extends javax.swing.JFrame {
     public AdministratorNew_User() {
         initComponents();
         
-
+        loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
     }
 
     /** This method is called from within the constructor to
@@ -385,6 +389,7 @@ public class AdministratorNew_User extends javax.swing.JFrame {
         // TODO add your handling code here:
         LoginForm loginForm = new LoginForm();
         this.dispose();
+        Logout.logOut(this, loginForm);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void RegisterButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButton1ActionPerformed
@@ -392,23 +397,57 @@ public class AdministratorNew_User extends javax.swing.JFrame {
     }//GEN-LAST:event_RegisterButton1ActionPerformed
 
     private void txtFname1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFname1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtFname1ActionPerformed
 
     private void txtFname1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFname1KeyReleased
-       
+        // TODO add your handling code here:
+        String PATTERN="^[a-zA-Z]{0,30}$";
+        Pattern patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(txtFname1.getText());
+        if(!match.matches()){
+            Flabel1.setText("Name is incorrect!");
+        }
+        else{
+            Flabel1.setText(null);
+        }
     }//GEN-LAST:event_txtFname1KeyReleased
 
     private void txtLname1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLname1KeyReleased
-      
+       // TODO add your handling code here:
+        String PATTERN="^[a-zA-Z]{0,30}$";
+        Pattern patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(txtLname1.getText());
+        if(!match.matches()){
+            Llabel1.setText("Surname is incorrect!");
+        }
+        else{
+            Llabel1.setText(null);
+        }
     }//GEN-LAST:event_txtLname1KeyReleased
 
     private void txtUser1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUser1KeyReleased
-      
+       String PATTERN="^[a-zA-Z0-9_]{0,15}$";
+        Pattern patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(txtUser1.getText());
+        if(!match.matches()){
+            Userlabel1.setText("Username between 1-15 characters");
+        }
+        else{
+            Userlabel1.setText(null);
+        }
     }//GEN-LAST:event_txtUser1KeyReleased
 
     private void txtEmail1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmail1KeyReleased
-      
+       String PATTERN="^[a-zA-Z0-9_]{0,30}[@][a-zA-Z]{0,10}[.][a-zA-Z]{0,5}$";
+        Pattern patt = Pattern.compile(PATTERN);
+        Matcher match = patt.matcher(txtEmail1.getText());
+        if(!match.matches()){
+            Emaillabel1.setText("Email is incorrect");
+        }
+        else{
+            Emaillabel1.setText(null);
+        }
     }//GEN-LAST:event_txtEmail1KeyReleased
 
     private void Llabel1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Llabel1KeyReleased
@@ -416,7 +455,54 @@ public class AdministratorNew_User extends javax.swing.JFrame {
     }//GEN-LAST:event_Llabel1KeyReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        try {
+            int flag = 0;
+            String Fname1 = txtFname1.getText();
+            String Lname1 = txtLname1.getText();
+            String Username1 = txtUser1.getText();
+            String Email1 = txtEmail1.getText();
+            String Password1 = txtPassword1.getText();
+            String ConfirmPassword1 = txtCPassword1.getText();
+            
+            while (flag == 0) {
+                if(Fname1.equals("") || Lname1.equals("") || Username1.equals("") || Email1.equals("") || Password1.equals("") || ConfirmPassword1.equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                break;
+                }
+            
+                else if(!Password1.equals(ConfirmPassword1)){
+                JOptionPane.showMessageDialog(null, "The password does not match");
+                break;
+                }
+          
+                else if(comboRole1.getSelectedIndex() == -1) {
+                JOptionPane.showMessageDialog(null, "Select a Role");
+                break;
+                }
+                else {
+                flag = 1;
+                }
+            }
+            
+              
+            if(flag == 1){
+            String query = "INSERT INTO `Users`(`user_name` ,`user_surname` ,`user_username` ,`user_email` ,`user_password` ,`user_role`) VALUES(?, ?, ?, ?, ?, ?)";
+            Connection myConn = MySQLConnection.getConnection();
+            preparedStatement=myConn.prepareStatement(query);
+            preparedStatement.setString(1, txtFname1.getText());
+            preparedStatement.setString(2, txtLname1.getText());
+            preparedStatement.setString(3, txtUser1.getText());
+            preparedStatement.setString(4, txtEmail1.getText());
+            preparedStatement.setString(5, txtPassword1.getText());
+            preparedStatement.setString(6, comboRole1.getSelectedItem().toString());
+            preparedStatement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "REGISTER SUCCESSFULLY");
+            }
+            
+            
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

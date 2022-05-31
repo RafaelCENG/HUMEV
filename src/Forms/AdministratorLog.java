@@ -6,6 +6,8 @@
 
 package Forms;
 
+import Coding.Logout;
+
 /**
  *
  * @author Raphael
@@ -146,12 +148,16 @@ public class AdministratorLog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
+          // TODO add your handling code here:
+        LoginForm loginForm = new LoginForm();
+        this.dispose();
+        Logout.logOut(this, loginForm);
 
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+         new AdministratorPanel().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

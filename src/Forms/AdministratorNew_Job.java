@@ -1,6 +1,9 @@
 package Forms;
 
 
+import Coding.Administrator;
+import Coding.LoginSession;
+import Coding.Logout;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -14,7 +17,9 @@ public class AdministratorNew_Job extends javax.swing.JFrame {
    
     public AdministratorNew_Job() {
         initComponents();
-        
+                
+        loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
     }
 
     /** This method is called from within the constructor to
@@ -451,12 +456,13 @@ public class AdministratorNew_Job extends javax.swing.JFrame {
         // TODO add your handling code here:
         LoginForm loginForm = new LoginForm();
         this.dispose();
-        
+        Logout.logOut(this, loginForm);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new AdministratorPanel().setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
@@ -464,15 +470,91 @@ public class AdministratorNew_Job extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      
+       // add new company
+        
+        //get data from the fields
+        String afm = jTextField1.getText();
+        String doy = jTextField2.getText();
+        String name = jTextField3.getText();
+        String phone = jTextField4.getText();
+        String street = jTextField5.getText(); 
+        String num = jTextField6.getText();
+        String city = jTextField7.getText();
+        String country = jTextField8.getText();
+        
+        if(afm.trim().equals("") || doy.trim().equals("") || name.trim().equals("") || phone.trim().equals("") || street.trim().equals("") || num.trim().equals("") || city.trim().equals("") || country.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                if(Administrator.addCompany(afm,doy,name,phone,street,num,city,country)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-      
+      // add new job
+        
+        //get data from the fields
+        String start = jTextField12.getText();
+        String salary= jTextField13.getText();
+        String position = jTextField14.getText(); 
+        String edra = jTextField15.getText();
+        String evaluator = jTextField16.getText();
+        String announce = jTextField17.getText();
+        String submission = jTextField18.getText();
+        
+        if(start.trim().equals("") || salary.trim().equals("") || position.trim().equals("") || edra.trim().equals("") || announce.trim().equals("") || submission.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                if(Administrator.addJob(start,salary,position,edra,evaluator,announce,submission)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }      
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      
+      // add new item
+        
+        //get data from the fields
+        String title = jTextField9.getText();
+        String desc= jTextField10.getText();
+        String belong = jTextField11.getText(); 
+
+        
+        if(title.trim().equals("") || desc.trim().equals("") || belong.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                if(Administrator.addItem(title,desc,belong)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }      
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
