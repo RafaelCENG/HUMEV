@@ -1,20 +1,31 @@
 package Forms;
 
 
+import Coding.Employee;
+import Coding.LoginSession;
+import Coding.Logout;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class EmployeeInformation extends javax.swing.JFrame {
-    
+     
     Connection myConn = null;
     PreparedStatement preparedStatement = null;
 
     /** Creates new form EmployeeInformation */
-
+    Employee employee = new Employee();
     public EmployeeInformation() {
         initComponents();
-       
+        
+        String user;
+        loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
+        user = LoginSession.user_username;
+        //populate the jtable
+        employee.fillEmployeeInformation(jTable1,user);
     }
 
     /** This method is called from within the constructor to
@@ -278,7 +289,7 @@ public class EmployeeInformation extends javax.swing.JFrame {
         // TODO add your handling code here:
         LoginForm loginForm = new LoginForm();
         this.dispose();
-        
+        Logout.logOut(this, loginForm);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -287,15 +298,50 @@ public class EmployeeInformation extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
+             // display the selected row data in the jtextfields
+        
+        // get the jtable model
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        
+        // get the selected row index
+        int rIndex = jTable1.getSelectedRow();
+        
+        // display data
+        jTextField1.setText(model.getValueAt(rIndex, 1).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
+           // change the bio
+        
+        //get data from the fields
+        String bio = jTextField1.getText();
+        String user = LoginSession.user_username;
+        if(bio.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                if(employee.editEmployee(bio,user)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      
+          //clear the jtable first
+        jTable1.setModel(new DefaultTableModel(null, new Object[]{"Username", "Bio","Sistatikes","Certificates","Awards","AFM_Etairias","Interview"}));
+
+        String user;
+        user = LoginSession.user_username;
+        //populate the jtable
+        employee.fillEmployeeInformation(jTable1,user);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -303,7 +349,27 @@ public class EmployeeInformation extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      
+        String oldPass = jTextField2.getText();
+       String newPass = jTextField3.getText();
+       String user = LoginSession.user_username;
+       String checkPass = employee.checkOldPassword(user);
+       if(oldPass.trim().equals("") || newPass.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+       else {
+            try {
+                if(!checkPass.equals(oldPass)){
+                  JOptionPane.showMessageDialog(null, "Wrong Old Password");
+                }
+                else  {
+                    employee.editPassword(newPass,user);
+                    JOptionPane.showMessageDialog(null, "Successfull changes");
+                 }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }  
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

@@ -1,5 +1,7 @@
 package Forms;
 
+import Coding.Employee;
+import Coding.LoginSession;
 import Coding.Logout;
 
 
@@ -8,7 +10,13 @@ public class EmployeeRequests extends javax.swing.JFrame {
    
     /** Creates new form EmployeeRequests */
     public EmployeeRequests() {
-        initComponents();
+              initComponents();
+        loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
+        String user;
+         user = LoginSession.user_username;
+        //populate the jtable
+        Employee.fillEmployeeJobs(jTable1,user);
       
     }
 

@@ -2,12 +2,18 @@
 
 package Forms;
 
+import Coding.LoginSession;
+import Coding.Logout;
+
 
 public class EmployeePanel extends javax.swing.JFrame {
 
 
     public EmployeePanel() {
         initComponents();
+        
+        loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
     }
 
     /** This method is called from within the constructor to
@@ -181,20 +187,26 @@ public class EmployeePanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
+            // TODO add your handling code here:
+        LoginForm loginForm = new LoginForm();
+        this.dispose();
+        Logout.logOut(this, loginForm);
 
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    new EmployeeInformation().setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+   new EmployeeRequests().setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+   new EmployeeMakeRequest().setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

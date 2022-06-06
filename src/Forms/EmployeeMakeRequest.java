@@ -8,6 +8,8 @@ package Forms;
 
 
 
+import Coding.Employee;
+import Coding.LoginSession;
 import Coding.Logout;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -20,7 +22,13 @@ public class EmployeeMakeRequest extends javax.swing.JFrame {
     public EmployeeMakeRequest() {
         initComponents();
         
-      
+       String user;
+        loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
+        user = LoginSession.user_username;
+        //populate the jtable
+        Employee.fillEmployeeJobs2(jTable1);
+        Employee.fillEmployeeReqs(jTable2,user);
     }
 
     /** This method is called from within the constructor to
@@ -263,16 +271,56 @@ public class EmployeeMakeRequest extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+           //clear the jtable first
+        jTable1.setModel(new DefaultTableModel(null, new Object[]{"EMPLOYEE","JOB_ID"}));
 
+        String user;
+        user = LoginSession.user_username;
+        //populate the jtable
+        Employee.fillEmployeeReqs(jTable2,user);
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
+       String jobid = jTextField1.getText();
+       String user = LoginSession.user_username;
+       if(jobid.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                if(Employee.checkReq(jobid,user)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-  
+  String jobid = jTextField1.getText();
+       String user = LoginSession.user_username;
+       if(jobid.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                if(Employee.checkReq2(user,jobid)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }  
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
