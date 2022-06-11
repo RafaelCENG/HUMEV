@@ -8,6 +8,8 @@ package Forms;
 
 
 
+import Coding.Evaluator;
+import Coding.LoginSession;
 import Coding.Logout;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -15,10 +17,16 @@ import javax.swing.JOptionPane;
 
 public class EvaluatorJob extends javax.swing.JFrame {
 
-
+        Evaluator evaluator = new Evaluator();
     /** Creates new form EvaluatorJob */
     public EvaluatorJob() {
-        initComponents();
+          initComponents();
+        String user;
+        loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
+        user = LoginSession.user_username;
+        //populate the jtable
+        evaluator.fillJobInformation(jTable1);
        
     }
 
@@ -112,7 +120,7 @@ public class EvaluatorJob extends javax.swing.JFrame {
         );
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vaseis/project/images/login_btn.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/Images/login_btn.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -274,15 +282,57 @@ public class EvaluatorJob extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-    
+     // display the selected row data in the jtextfields
+        
+        // get the jtable model
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        
+        // get the selected row index
+        int rIndex = jTable1.getSelectedRow();
+        
+        // display data
+        jTextField1.setText(model.getValueAt(rIndex, 1).toString());
+        jTextField2.setText(model.getValueAt(rIndex, 2).toString());
+        jTextField3.setText(model.getValueAt(rIndex, 3).toString());
+        jTextField4.setText(model.getValueAt(rIndex, 4).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
+             // change the password or email
+        
+        //get data from the fields
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+         int rIndex = jTable1.getSelectedRow();
+        String salary = jTextField1.getText();
+        String position = jTextField2.getText();
+        String announce = jTextField3.getText();
+        String submission = jTextField4.getText();
+        String user = LoginSession.user_username;
+        String id = model.getValueAt(rIndex, 0).toString();
+        if(salary.trim().equals("") || position.trim().equals("") || announce.trim().equals("") || submission.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                if(evaluator.editJob(salary,position,announce,submission,user,id)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }     
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    
+     //clear the jtable first
+        jTable1.setModel(new DefaultTableModel(null, new Object[]{"Id","Sallary", "Position","Announce_Date","Submission_Date","Evaluator"}));
+
+        //populate the jtable
+        evaluator.fillJobInformation(jTable1);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

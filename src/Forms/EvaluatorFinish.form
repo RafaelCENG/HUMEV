@@ -256,7 +256,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vaseis/project/images/login_btn.png"/>
+              <Image iconType="3" name="/Forms/Images/login_btn.png"/>
             </Property>
           </Properties>
           <Events>

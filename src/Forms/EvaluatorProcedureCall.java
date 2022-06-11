@@ -6,6 +6,8 @@
 
 package Forms;
 
+import Coding.Evaluator;
+import Coding.LoginSession;
 import Coding.Logout;
 
 
@@ -16,7 +18,10 @@ public class EvaluatorProcedureCall extends javax.swing.JFrame {
     /** Creates new form EvaluatorProcedureCall */
     public EvaluatorProcedureCall() {
         initComponents();
-
+        String user;
+         loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
+        user = LoginSession.user_username;
     }
 
     /** This method is called from within the constructor to
@@ -103,7 +108,7 @@ public class EvaluatorProcedureCall extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vaseis/project/images/login_btn.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/Images/login_btn.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -215,7 +220,17 @@ public class EvaluatorProcedureCall extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
+       //get data from the fields
+        String id =jTextField1.getText();
+        int id2 = Integer.parseInt(id);
+        String user = LoginSession.user_username;
+                try {
+                    Evaluator.getProgress(id2,user,jTable1);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                    // ignore error otherwise, if we can safely do so.
+                }  
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

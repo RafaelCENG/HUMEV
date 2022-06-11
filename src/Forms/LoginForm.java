@@ -50,7 +50,7 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HUMEV/images/lock.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/Images/lock.png"))); // NOI18N
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -91,9 +91,9 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Request a password if you forgot!");
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HUMEV/images/user_name.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/Images/user_name.png"))); // NOI18N
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HUMEV/images/user_password.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/Images/user_password.png"))); // NOI18N
 
         usertypeCombo.setBackground(new java.awt.Color(0, 0, 0));
         usertypeCombo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -161,7 +161,7 @@ public class LoginForm extends javax.swing.JFrame {
         loginBtn.setBackground(new java.awt.Color(0, 0, 0));
         loginBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         loginBtn.setForeground(new java.awt.Color(255, 255, 255));
-        loginBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HUMEV/images/login_btn.png"))); // NOI18N
+        loginBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/Images/login_btn.png"))); // NOI18N
         loginBtn.setText("LOGIN");
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,7 +184,7 @@ public class LoginForm extends javax.swing.JFrame {
         closeBtn.setBackground(new java.awt.Color(0, 0, 0));
         closeBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
-        closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HUMEV/images/close_btn.png"))); // NOI18N
+        closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/Images/close_btn.png"))); // NOI18N
         closeBtn.setText("CLOSE");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -1,6 +1,8 @@
 package Forms;
 
 
+import Coding.Evaluator;
+import Coding.LoginSession;
 import Coding.Logout;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -8,10 +10,30 @@ import javax.swing.JOptionPane;
 
 public class EvaluatorFinish extends javax.swing.JFrame {
 
-    
+       Evaluator evaluator = new Evaluator();
     /** Creates new form EvaluatorFinish */
     public EvaluatorFinish() {
-        initComponents();
+         initComponents();
+        
+        String user;
+        loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
+        user = LoginSession.user_username;
+        //populate the jtable
+        evaluator.fillFinal1(jTable1,user);
+        //populate the jtable2
+        evaluator.fillFinal2(jTable2,user);
+        
+        DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+        int rows = model.getRowCount();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j <= 5; j++) {
+                Object ob = model.getValueAt(i, j);
+                if (ob == null || ob.toString().isEmpty()) {
+                    model.setValueAt("NA", i, j);
+                }
+            }
+        }
         
     }
 
@@ -107,7 +129,7 @@ public class EvaluatorFinish extends javax.swing.JFrame {
         );
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vaseis/project/images/login_btn.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/Images/login_btn.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -294,15 +316,69 @@ public class EvaluatorFinish extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-       
+           // display the selected row data in the jtextfields
+        
+        // get the jtable model
+        DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+        
+        // get the selected row index
+        int rIndex = jTable2.getSelectedRow();
+        
+        // display data
+        jTextField2.setText(model.getValueAt(rIndex, 1).toString());
+        jTextField1.setText(model.getValueAt(rIndex, 2).toString());
+        jTextField3.setText(model.getValueAt(rIndex, 3).toString());
+        jTextField4.setText(model.getValueAt(rIndex, 4).toString());
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-     
+         //clear the jtable first
+        jTable2.setModel(new DefaultTableModel(null, new Object[]{"ID", "COMMENTS","GRADE1","GRADE2","GRADE3","FinalGrade"}));
+
+        String user;
+        user = LoginSession.user_username;
+        //populate the jtable
+        evaluator.fillFinal2(jTable2,user);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
+        // change the password or email
+        
+        //get data from the fields
+        DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+        int rIndex = jTable2.getSelectedRow();
+        String id = model.getValueAt(rIndex, 0).toString();
+        int id2 = Integer.parseInt(id);
+        String comments = jTextField2.getText();
+        String grade1 = jTextField1.getText();
+        String grade2 = jTextField3.getText();
+        String grade3 = jTextField4.getText();
+        
+        String user = LoginSession.user_username;
+        
+        if(grade1.trim().equals("") || grade2.trim().equals("") || grade3.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                if(evaluator.editFinal(comments,grade1,grade2,grade3,id)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+                try {
+                    evaluator.getEvaluation(id2);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                    // ignore error otherwise, if we can safely do so.
+                }
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

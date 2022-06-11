@@ -1,5 +1,3 @@
-
-
 package Forms;
 
 import Coding.LoginSession;
@@ -93,7 +91,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         );
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HUMEV/images/login_btn.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/Images/login_btn.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -195,7 +193,7 @@ public class EmployeePanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    new EmployeeInformation().setVisible(true);
+       new EmployeeInformation().setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

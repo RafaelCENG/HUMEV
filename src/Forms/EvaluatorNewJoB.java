@@ -1,6 +1,8 @@
 package Forms;
 
 
+import Coding.Evaluator;
+import Coding.LoginSession;
 import Coding.Logout;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -8,12 +10,16 @@ import javax.swing.JOptionPane;
 
 public class EvaluatorNewJoB extends javax.swing.JFrame {
 
- 
+    Evaluator evaluator = new Evaluator();
     
     /** Creates new form EvaluatorNewJoB */
     public EvaluatorNewJoB() {
         initComponents();
-
+         loginAsLbl.setText(LoginSession.user_role);
+        usernameLbl.setText(LoginSession.user_username);
+        
+         //populate the jtable
+        evaluator.fillAntikeimenoInformation(jTable1);
     }
 
     /** This method is called from within the constructor to
@@ -118,7 +124,7 @@ public class EvaluatorNewJoB extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vaseis/project/images/login_btn.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/Images/login_btn.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -267,13 +273,12 @@ public class EvaluatorNewJoB extends javax.swing.JFrame {
                                     .add(jTextField7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 130, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                                         .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                        .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField8)))
-                                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField8))))
                             .add(layout.createSequentialGroup()
                                 .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 177, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(18, 18, 18)
-                                .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 119, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(35, 35, 35))))))
+                                .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 119, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -343,15 +348,66 @@ public class EvaluatorNewJoB extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    
+      //clear the jtable first
+        jTable1.setModel(new DefaultTableModel(null, new Object[]{"Title", "Description","Belongs_To"}));
+
+        //populate the jtable
+        evaluator.fillAntikeimenoInformation(jTable1);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    
+      // add antikeimeno
+        
+        //get data from the fields
+        String title = jTextField7.getText();
+        String description = jTextField8.getText();
+        String belongs = jTextField9.getText();
+        if(title.trim().equals("") || description.trim().equals("") || belongs.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                if(evaluator.addJobExtra(title,description,belongs)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-   
+    // add new job
+        
+        //get data from the fields
+        String start = jTextField1.getText();
+        String salary= jTextField2.getText();
+        String position = jTextField3.getText(); 
+        String edra = jTextField4.getText();
+        String user = LoginSession.user_username;
+        String announce = jTextField5.getText();
+        String submission = jTextField6.getText();
+        
+        if(start.trim().equals("") || salary.trim().equals("") || position.trim().equals("") || edra.trim().equals("") || announce.trim().equals("") || submission.trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Missing information");
+                }
+        else {
+            try {
+                if(evaluator.addJob(start,salary,position,edra,user,announce,submission)) {
+                JOptionPane.showMessageDialog(null, "Successfull changes");
+            }
+               else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
+               }
+            }
+            catch(NumberFormatException ex) {
+                 JOptionPane.showMessageDialog(null, "Wrong formatting");
+            }
+        }           
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

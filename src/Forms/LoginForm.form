@@ -100,7 +100,7 @@
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/HUMEV/images/lock.png"/>
+                  <Image iconType="3" name="/Forms/Images/lock.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -226,14 +226,14 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/HUMEV/images/user_name.png"/>
+                  <Image iconType="3" name="/Forms/Images/user_name.png"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/HUMEV/images/user_password.png"/>
+                  <Image iconType="3" name="/Forms/Images/user_password.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -295,7 +295,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/HUMEV/images/login_btn.png"/>
+                  <Image iconType="3" name="/Forms/Images/login_btn.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="LOGIN"/>
               </Properties>
@@ -332,7 +332,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/HUMEV/images/close_btn.png"/>
+                  <Image iconType="3" name="/Forms/Images/close_btn.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CLOSE"/>
               </Properties>
