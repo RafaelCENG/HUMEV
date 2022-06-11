@@ -21,14 +21,14 @@ NetBeans IDE
 
 ## Usage
 
-```python
+```
 How to Run :
 First Run MYSQL Scripts :
 1.CREATE
 2.TRIGGERS
 3.INSERT
 
-NetBeans Run
+The Open NetBeans and Press Run (A GUI will pop up)
 ```
 
 ## License
