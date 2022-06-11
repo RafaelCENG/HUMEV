@@ -22,8 +22,7 @@ NetBeans IDE
 ## Usage
 
 ```
-How to Run :
-First Run MYSQL Scripts :
+First Run MYSQL Scripts in this specific order :
 1.CREATE
 2.TRIGGERS
 3.INSERT
